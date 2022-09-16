@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Die from "./Die";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 
 function App() {
   const [dice, setDice] = useState(getNewDice());
@@ -55,7 +56,10 @@ function App() {
     const allHeld = dice.every((die) => die.isHeld);
     const sameValue = dice.every((die) => die.value === firstDie);
 
-    allHeld && sameValue ? console.log("You won!") : console.log();
+    if (allHeld && sameValue) {
+      console.log("You won!");
+      setTenzies(true);
+    }
   }, [dice]);
 
   const diceElements = dice.map((die) => (
@@ -69,6 +73,7 @@ function App() {
 
   return (
     <main>
+      {tenzies && <Confetti />}
       <h1 className="game-title">Tenzies!</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
