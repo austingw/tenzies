@@ -5,18 +5,13 @@ function App() {
   const [dice, setDice] = useState(getNewDice());
 
   function getNewDice() {
-    const newDice = [
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-      Math.floor(Math.random() * 6) + 1,
-    ];
+    const newDice = [];
+    for (let i = 0; i < 10; i++) {
+      newDice.push({
+        value: Math.ceil(Math.random() * 6),
+        isHeld: false,
+      });
+    }
     return newDice;
   }
 
@@ -24,7 +19,7 @@ function App() {
     setDice(getNewDice());
   }
 
-  const diceElements = dice.map((die) => <Die value={die} />);
+  const diceElements = dice.map((die) => <Die number={die} />);
 
   return (
     <main>
