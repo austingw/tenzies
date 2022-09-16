@@ -53,7 +53,7 @@ function App() {
 
   return (
     <main>
-      <h2 className="game-title">Tenzies!</h2>
+      <h1 className="game-title">Tenzies!</h1>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
         current value between rolls.
