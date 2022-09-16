@@ -38,8 +38,24 @@ function App() {
     );
   }
 
+  function checkHeld(array) {}
+  /*
+  function checkHeld() {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].value ==/= ) {
+        return false;
+        break;
+      }
+    }
+    return true;
+  }*/
+
   useEffect(() => {
-    console.log("effect triggered");
+    const firstDie = dice[0].value;
+    const allHeld = dice.every((die) => die.isHeld);
+    const sameValue = dice.every((die) => die.value === firstDie);
+
+    allHeld && sameValue ? console.log("You won!") : console.log();
   }, [dice]);
 
   const diceElements = dice.map((die) => (
