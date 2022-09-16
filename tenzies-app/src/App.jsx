@@ -39,17 +39,10 @@ function App() {
     );
   }
 
-  function checkHeld(array) {}
-  /*
-  function checkHeld() {
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].value ==/= ) {
-        return false;
-        break;
-      }
-    }
-    return true;
-  }*/
+  function newGame() {
+    setTenzies(false);
+    setDice(getNewDice());
+  }
 
   useEffect(() => {
     const firstDie = dice[0].value;
@@ -80,7 +73,11 @@ function App() {
         current value between rolls.
       </p>
       <div className="dice-container ">{diceElements}</div>
-      <button onClick={rollDice}>Roll</button>
+      {!tenzies ? (
+        <button onClick={rollDice}>Roll</button>
+      ) : (
+        <button onClick={newGame}>New Game</button>
+      )}
     </main>
   );
 }
