@@ -4,29 +4,28 @@ import { nanoid } from "nanoid";
 
 function App() {
   const [dice, setDice] = useState(getNewDice());
+  const [tenzies, setTenzies] = useState(false);
 
   function getNewDice() {
     const newDice = [];
     for (let i = 0; i < 10; i++) {
-      newDice.push({
-        value: Math.ceil(Math.random() * 6),
-        isHeld: false,
-        id: nanoid(),
-      });
+      newDice.push(generateDie());
     }
     return newDice;
+  }
+
+  function generateDie() {
+    return {
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid(),
+    };
   }
 
   function rollDice() {
     setDice((oldDice) =>
       oldDice.map((die) => {
-        return die.isHeld === true
-          ? die
-          : {
-              value: Math.ceil(Math.random() * 6),
-              isHeld: false,
-              id: nanoid(),
-            };
+        return die.isHeld === true ? die : generateDie();
       })
     );
   }
@@ -38,6 +37,10 @@ function App() {
       })
     );
   }
+
+  useEffect(() => {
+    console.log("effect triggered");
+  }, [dice]);
 
   const diceElements = dice.map((die) => (
     <Die
@@ -51,6 +54,10 @@ function App() {
   return (
     <main>
       <h2 className="game-title">Tenzies!</h2>
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls.
+      </p>
       <div className="dice-container ">{diceElements}</div>
       <button onClick={rollDice}>Roll</button>
     </main>

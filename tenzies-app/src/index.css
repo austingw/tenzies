@@ -79,3 +79,11 @@ button:active {
   text-decoration: underline;
   margin-bottom: 20px;
 }
+
+.instructions {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  margin-top: 0;
+  text-align: center;
+  width: 75%;
+}
