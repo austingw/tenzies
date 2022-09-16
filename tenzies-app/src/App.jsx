@@ -6,7 +6,7 @@ import Confetti from "react-confetti";
 function App() {
   const [dice, setDice] = useState(getNewDice());
   const [tenzies, setTenzies] = useState(false);
-  const [turns, setTurns] = useState(0);
+  const [turns, setTurns] = useState(1);
 
   function getNewDice() {
     const newDice = [];
