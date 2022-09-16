@@ -74,7 +74,7 @@ function App() {
 
       <h1 className="game-title">Tenzies!</h1>
       <div className="stats">
-        <h3 className="turns"># of Turns Taken: {turns}</h3>
+        <h3 className="turns"># of Turns: {turns}</h3>
         <h3 className="wins"># of Wins: {wins}</h3>
       </div>
       <p className="instructions">
