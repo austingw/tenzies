@@ -18,11 +18,34 @@ function App() {
   }
 
   function rollDice() {
-    setDice(getNewDice());
+    setDice((oldDice) =>
+      oldDice.map((die) => {
+        return die.isHeld === true
+          ? die
+          : {
+              value: Math.ceil(Math.random() * 6),
+              isHeld: false,
+              id: nanoid(),
+            };
+      })
+    );
+  }
+
+  function holdDice(id) {
+    setDice((oldDice) =>
+      oldDice.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      })
+    );
   }
 
   const diceElements = dice.map((die) => (
-    <Die key={die.id} value={die.value} />
+    <Die
+      key={die.id}
+      value={die.value}
+      isHeld={die.isHeld}
+      holdDie={() => holdDice(die.id)}
+    />
   ));
 
   return (
