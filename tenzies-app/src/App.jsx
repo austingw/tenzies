@@ -7,6 +7,7 @@ function App() {
   const [dice, setDice] = useState(getNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [turns, setTurns] = useState(1);
+  const [wins, setWins] = useState(0);
 
   function getNewDice() {
     const newDice = [];
@@ -53,8 +54,8 @@ function App() {
     const sameValue = dice.every((die) => die.value === firstDie);
 
     if (allHeld && sameValue) {
-      console.log("You won!");
       setTenzies(true);
+      setWins((prevWins) => prevWins + 1);
     }
   }, [dice]);
 
@@ -73,7 +74,8 @@ function App() {
 
       <h1 className="game-title">Tenzies!</h1>
       <div className="stats">
-        <h3 className="turns">Turn #: {turns}</h3>
+        <h3 className="turns"># of Turns Taken: {turns}</h3>
+        <h3 className="wins"># of Wins: {wins}</h3>
       </div>
       <p className="instructions">
         Roll until all dice are the same. Click each die to freeze it at its
